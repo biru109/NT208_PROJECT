@@ -1,0 +1,213 @@
+.gioithieu{
+    padding-top:125px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 35vw;
+    left: 0px;
+    background: linear-gradient(270.04deg, rgba(57, 140, 191, 0.84) 2.49%, rgba(20, 72, 140, 0.84) 50.5%, #398CBF 97.22%);
+    border: 0.5px solid #FFFFFF;
+    text-align: center;
+    color: white;
+}
+
+.gt1{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 150px;
+}
+
+.gt2{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    margin-top:-25px;
+    text-align: center;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+.btgt{
+    box-sizing: border-box;
+    margin-top: 33px;
+    width: 250px;
+    height: 55px;
+    font-size: 28px;
+    background: #F5BF11;
+    border: 0.5px solid #FFFFFF;
+    border-radius: 10px;
+}
+
+.gioithieu2{
+    width: 100%;
+    box-sizing: border-box;
+    height: 30vw;
+    left: 0px;
+    background: #FFFFFF;
+    border: 0.5px solid white;
+    text-align: center;
+}
+
+.gt3{
+    /* Chào mừng đến với HiStudy! */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 105px;
+    text-align: center;
+    color: #2054B2;
+}
+
+.gt4{
+    /* Chúng tôi cung cấp giải pháp học tập toàn diện giúp học sinh tiểu học phát triển tư duy và kiến thức một cách hiệu quả nhất */
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 23px;
+    margin-left: 8%;
+    margin-right: 8%;
+    line-height: 30px;
+}
+
+.bacot{
+    gap: 7vw;
+    margin-left: 5vw;
+    margin-top: 80px;
+    margin-right: 5vw;
+}
+.cot1{
+    height: 395px;
+    background: #E1E4DF;
+    border-radius: 15px;
+}
+
+.gv1{
+    /* Giáo viên chất lượng */
+    margin-top: 20px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 35px;
+    color: #2054B2;
+}
+
+.gv2{
+    /* Đội ngũ giáo viên giàu kinh nghiệm, phương pháp giảng dạy sinh động, dễ hiểu phù hợp với lứa tuổi tiểu học. */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 35px;
+    text-align: center;
+    color: #000000;
+}
+
+.cot3{
+    height: 395px;
+    background: #E1E4DF;
+    border-radius: 15px;
+}
+
+.bt1{
+    /* Giáo viên chất lượng */
+    margin-top: 13px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 35px;
+    color: #2054B2;
+}
+
+.bt2{
+    /* Đội ngũ giáo viên giàu kinh nghiệm, phương pháp giảng dạy sinh động, dễ hiểu phù hợp với lứa tuổi tiểu học. */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 35px;
+    text-align: center;
+    color: #000000;
+}
+
+.cot2{
+    padding-top: 29px;
+    height: 395px;
+    background: #E1E4DF;
+    border-radius: 15px;
+}
+
+.bg1{
+    /* Giáo viên chất lượng */
+    margin-top: 20px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 35px;
+    color: #2054B2;
+}
+
+.bg2{
+    /* Đội ngũ giáo viên giàu kinh nghiệm, phương pháp giảng dạy sinh động, dễ hiểu phù hợp với lứa tuổi tiểu học. */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 35px;
+    text-align: center;
+    color: #000000;
+}
+
+.KhoaHocNoiBat{
+    padding-top: 1070px;
+}
+
+.maunen{
+    background-color: #E1E4DF;
+}
+
+.khoahocnb{
+    /* Khóa học nổi bật */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 40px;
+    color: #2054B2;
+    margin-left: 20px;
+    margin-top: -15px;
+}
+
+.HocThu{
+    margin-top: 60px;
+    background-color: white;
+}
+
+.ht1{
+    text-align: center;
+    font-family: 'Montserrat';
+    color: #2054B2;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.ht2{
+    margin-top: 15px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.ht2 span{
+    font-weight: 700;
+}
