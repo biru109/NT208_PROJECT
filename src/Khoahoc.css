@@ -1,0 +1,138 @@
+.courses-container {
+  position: relative;
+  width: 100%;
+  /* height: 1124px; */
+  background: hsl(0, 0%, 100%);
+}
+
+/* Background content */
+.content-background {
+  position: absolute;
+  width: 100%;
+  /* height: 1007.5px; */
+  background: #F5F9FF;
+}
+
+.title-main {
+  text-align: center;
+  font-family: 'Noto Sans';
+  font-weight: 700;
+  font-size: 25px;
+  color: #000000;
+  margin-top: 50px; /* Tạo khoảng cách từ trên */
+}
+
+/* Subtitle */
+.subtitle-main {
+  text-align: center;
+  font-family: 'Noto Sans';
+  font-size: 25px;
+  color: #000000;
+  margin-bottom: 20px; /* Tạo khoảng cách dưới subtitle */
+}
+
+.course-cards {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; căn giữa */
+  gap: 50px; /* khoảng cách giữa các card */
+  padding: 20px;
+}
+
+.course-card {
+  position: relative; /* bỏ absolute */
+  width: 311.53px;
+  height: 279px;
+  background: #FFFFFF;
+  border-radius: 17.5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  width: 100%;
+  height: 102.59px;
+  font-family: 'Montserrat';
+  font-size: 18.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  
+  display: flex; /* Thêm flex */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+
+  text-align: center;
+
+  border-radius: 15px 15px 0px 0px;
+  transition: background-color 0.3s ease;
+}
+
+.card-header:hover {
+  filter: brightness(1.1); /* làm sáng hơn khi hover */
+}
+
+.card-title {
+  /* margin-top: 40px; */
+  margin-top: 25px;
+  text-align: left;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 16px;
+  padding: 0 10px;
+}
+
+.card-description {
+  text-align: left;
+  font-family: 'Montserrat';
+  font-size: 15px;
+  color: #808080;
+  padding: 0 10px;
+}
+
+.teacher-name {
+  margin-top: 10px;
+  text-align: left;
+  font-family: 'Montserrat';
+  font-size: 12.5px;
+  padding: 0 10px;
+}
+
+
+.lessons {
+  /* margin-top: 5px; */
+  display: flex; /* Xếp icon và text trên cùng 1 dòng */
+  margin: 2px 0 0 0; 
+  text-align: left;
+  font-family: 'Montserrat';
+  font-size: 13px;
+  padding: 0 10px;
+}
+
+.lesson-icon {
+  /* margin-right: 5px; */
+  height: 17px;
+  display: inline-block;
+}
+
+/* Enroll Button */
+.enroll-button {
+  position: relative;
+  margin: 10px auto;
+  width: 235px;
+  height: 29px;
+  background: #386DCC;
+  border-radius: 10px;
+  font-family: 'Montserrat';
+  font-size: 16px;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 29px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .course-card {
+    width: 100%; /* Khi nhỏ hơn tablet thì mỗi card chiếm full width */
+  }
+}

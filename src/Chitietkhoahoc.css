@@ -1,0 +1,262 @@
+/* 1. Header khóa học (breadcrumb + tiêu đề + mô tả):*/
+.course-header {
+  background-color: #efbdb8;
+  padding: 20px 30px;
+  text-align: center;
+}
+
+.breadcrumb {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: white;
+  text-align: left;
+}
+
+.breadcrumb-link {
+  cursor: pointer;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: none;
+  color: #3498db;
+}
+
+.course-title-chitietkhoahoc {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.teacher-name-chitietkhoahoc {
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+}
+
+/*2. Layout tổng thể (chi tiết khóa học - hai cột):*/
+.course-detail-container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding: 20px 30px;
+  background-color: #fdfdfd;
+  flex-wrap: wrap;
+  margin-top: 0;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .course-detail-container {
+    flex-direction: column;
+  }
+
+  .chapter-section,
+  .course-banner {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/*3. Cột trái: Thông tin các chương học:*/
+/*Nội dung chương học*/
+.chapter-section {
+  flex: 0 0 70%;
+  max-width: 70%;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.chapter-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  background-color: #f0f8ff;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.chapter-card:hover {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+}
+
+.chapter-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+}
+
+.chapter-title {
+  font-size: 18px;
+}
+
+.chapter-info {
+  font-size: 13px;
+  margin-top: 4px;
+  font-weight: normal;
+}
+
+.toggle-icon {
+  font-size: 18px;
+}
+
+/*Danh sách bài học*/
+.lesson-list {
+  padding: 12px 16px;
+  background-color: #e8f4ff;
+}
+
+.lesson-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  border-left: 5px solid #3498db;
+  font-size: 15px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.lesson-item:hover {
+  background-color: #f0f8ff;
+}
+
+.lesson-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lesson-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.lesson-title {
+  font-weight: 500;
+}
+
+.lesson-duration {
+  font-size: 13px;
+  color: #888;
+  white-space: nowrap;
+}
+
+/*Pop-up video bài giảng*/
+.video-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.video-popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.video-title {
+  margin: 0 0 15px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #e74c3c;
+}
+
+/*4. Cột phải: Thông tin ghi danh (Info):*/
+/*Banner*/
+.course-banner {
+  flex: 1;
+  max-width: 400px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.course-info-wrapper {
+  flex: 0 0 30%;
+  max-width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.course-description {
+  text-align: left;
+  font-size: 20px;
+}
+
+.course-meta {
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f8ff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.course-meta p {
+  margin: 6px 0;
+}
+
+.course-meta-item {
+  font-size: 15px;
+  color: #333;
+}
+
+.enroll-button {
+  background-color: #3498db;
+  padding: 10px 20px;
+  border-radius: 20px;
+  width: fit-content;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.enroll-button:hover {
+  background-color: #2c80b4;
+}

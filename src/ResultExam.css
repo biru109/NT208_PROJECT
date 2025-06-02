@@ -1,0 +1,80 @@
+.result-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.result-exam-container {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
+.result-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.result-subtitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.result-summary {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.result-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.result-label {
+  font-size: 16px;
+  margin: 0;
+}
+
+.result-number {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.result-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.result-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #2a64ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.result-button:hover:not(.disabled) {
+  background-color: #1d4ed8;
+}
+
+.result-button.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
