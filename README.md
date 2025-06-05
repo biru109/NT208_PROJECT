@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div align="center">
 
 # 🌐 [NT208.P24] HISTUDY - PRIMARY MATH LEARNING WEBSITE PROJECT 🌐
@@ -30,7 +29,6 @@ Website có giao diện thân thiện và dễ sử dụng, tích hợp học th
 | 2   | Hồng Bích Như          | 23521120 |
 | 3   | Phan Nguyễn Kiều My    | 23520965 |
 | 4   | Nguyễn Trường Gia Quyên| 23521328 |
-=======
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -101,4 +99,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
->>>>>>> origin/Kieu_My
