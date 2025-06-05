@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Chitietkhoahoc.css';
 //import Header from './components/Header';
-import LessonIcon from './images/Lesson.png';
+import LessonIcon from './images/lesson.png';
 
 const Chitietkhoahoc = ({setActivePage, selectedCourse}) => {
   const [openChapters, setOpenChapters] = useState({}); // theo dõi chương đang mở

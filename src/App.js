@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Khoahoc from './Khoahoc';
@@ -119,9 +118,8 @@ const handleExamSubmit = (answers, questions) => {
 
 
     </div>
+
   );
 }
 
 export default App;
-
-

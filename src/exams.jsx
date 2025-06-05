@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './exams.css';
 import CalculatorIcon from './images/calculator.png';
-import LessonIcon from './images/Lesson.png';
+import LessonIcon from './images/lesson.png';
 import bulbDefault from './images/bulb-default.png';
 import bulbActive from './images/bulb-active.png';
 import DoExam from './DoExam';

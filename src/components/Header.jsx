@@ -1,108 +1,57 @@
-// import React from 'react';
-// import './Header.css'; // Import file CSS
-// import logo from '../images/Vector.png'; // import ảnh vào trước
-// import kinhlup from '../images/TimKiem.png'; 
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import './Header.css';
+import logo from '../images/Logo.png';
+import kinhlup from '../images/TimKiem.png';
 
-// function Header() {
-//   return (
-//     <header className=" header fixed top-0 left-0 w-full z-50 bg-white shadow-md">
-//         {/* Logo và tên HiStudy */}
-//       <div className="header-top">
-//           <div className="header-left">
-//             <img src={logo} alt="HiStudy Logo" className="logo" />
-//             <span className="brand-name">  HiStudy</span>
-//           </div>
+export default function Header() {
+  const menuItems = [
+    { id: 'home', label: 'Trang chủ', to: '/' },
+    { id: 'khoahoc', label: 'Khóa học', to: '/khoahoc' },
+    { id: 'thithu', label: 'Thi thử', to: '/thithu' },
+    { id: 'tailieu', label: 'Tài liệu', to: '/tailieu' },
+  ];
 
-//           {/* Ô tìm kiếm */}
-//           <div className="search-bar">
-//             <input type="text" placeholder="Tìm kiếm khóa học, bài học..." />
-//             <button className="search-btn"><img src={kinhlup}></img></button>
-//           </div>
+  // Dùng useLocation để biết trang hiện tại, auto active link đúng
+  const location = useLocation();
 
-//           {/* Nút đăng nhập và đăng ký */}
-//           <div className="auth-buttons">
-//             <button className="login-btn">Đăng nhập</button>
-//             <button className="register-btn">Đăng ký</button>
-//           </div>
-//       </div>
-
-//       {/* Menu điều hướng */}
-//       <nav className="menu">
-//         <a href="#" className="active">Trang chủ</a>
-//         <a href="#">Khóa học</a>
-//         <a href="#">Thi thử</a>
-//         <a href="#">Tài liệu</a>
-//       </nav>
-//     </header>
-//   );
-// }
-
-// export default Header;
-
-import React from 'react';
-import './Header.css'; // Import file CSS
-import logo from '../images/Vector.png'; // import ảnh vào trước
-import kinhlup from '../images/TimKiem.png'; 
-
-function Header({ setActivePage, activePage }) {
   return (
     <header className="header fixed top-0 left-0 w-full z-50 bg-white shadow-md">
-      {/* Logo và tên HiStudy */}
       <div className="header-top">
         <div className="header-left">
           <img src={logo} alt="HiStudy Logo" className="logo" />
-          <span className="brand-name"> HiStudy</span>
+          <span className="brand-name">HiStudy</span>
         </div>
 
-        {/* Ô tìm kiếm */}
         <div className="search-bar">
           <input type="text" placeholder="Tìm kiếm khóa học, bài học..." />
-          <button className="search-btn">
-            <img src={kinhlup} alt="Search" />
-          </button>
+          <button className="search-btn"><img src={kinhlup} alt="Tìm kiếm" /></button>
         </div>
 
-        {/* Nút đăng nhập và đăng ký */}
         <div className="auth-buttons">
-          <button className="login-btn">Đăng nhập</button>
-          <button className="register-btn">Đăng ký</button>
+          <Link to="/login">
+            <button className="login-btn">Đăng nhập</button>
+          </Link>
+          <Link to="/register">
+            <button className="register-btn">Đăng ký</button>
+          </Link>
         </div>
       </div>
 
-      {/* Menu điều hướng */}
-      <nav className="menu">
-        <a
-          href="#"
-          className={activePage === 'home' ? 'active' : ''}
-          onClick={() => setActivePage('home')}
-        >
-          Trang chủ
-        </a>
-        <a
-          href="#"
-          className={['courses', 'DetailedCourses'].includes(activePage) ? 'active' : ''}
-          onClick={() => setActivePage('courses')}
-        >
-          Khóa học
-        </a>
-        <a
-          href="#"
-          className={activePage === 'exams' ? 'active' : ''}
-          onClick={() => setActivePage('exams')}
-        >
-          Thi thử
-        </a>
-        <a
-          href="#"
-          className={activePage === 'resources' ? 'active' : ''}
-          onClick={() => setActivePage('rzzzesources')}
-        >
-          Tài liệu
-        </a>
+      <nav className="menu flex gap-4">
+        {menuItems.map((item) => {
+          const isActive = location.pathname === item.to;
+          return (
+            <Link
+              key={item.id}
+              to={item.to}
+              className={`your-classnames ${isActive ? 'active' : ''}`}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
       </nav>
     </header>
   );
 }
-
-export default Header;
-

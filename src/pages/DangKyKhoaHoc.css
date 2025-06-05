@@ -1,0 +1,7 @@
+.kengang{
+  border: none;
+  border-top: 1pt solid #e6e4e48a; 
+  margin: 10px 0; /* Tạo khoảng cách trên và dưới */
+  margin-left: 20px;
+  margin-right: 20px;
+}
