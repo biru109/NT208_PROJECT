@@ -1,6 +1,6 @@
 import React from 'react';
 import './Khoahoc.css';
-import LessonIcon from './images/lesson.png';
+import LessonIcon from './images/Lesson.png';
 import khoahocImage from './images/khoahoc.png'; // Add images or relevant ones
 
 const Khoahoc = ({setActivePage, setSelectedCourse }) => {
