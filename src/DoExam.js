@@ -5,12 +5,13 @@ import './doexam.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import pic_exam from './images/pic_exam.png';
+import Header from './components/Header';
+import { useNavigate } from 'react-router-dom';
 
 
 
-const DoExam = ({ exam, setActivePage, onSubmit }) => {
-  console.log("✅ DoExam props:", { exam, setActivePage, onSubmit });
-  console.log("✅ Kiểu của onSubmit:", typeof onSubmit);
+const DoExam = ({ exam, goBackToExamList, onSubmit }) => {
+  const navigate = useNavigate();
   const questions = [
     {
       id: 1,
@@ -126,19 +127,19 @@ const DoExam = ({ exam, setActivePage, onSubmit }) => {
   };
 
   return (
-
-    
-
+    <div>
+      <Header />
     <div className="doexam-container">
       <div className="exam-content">
 
     <div className="breadcrumb">
-      <Link to="/">Trang chủ</Link> &gt;&gt;
-      <Link to="/khoa-hoc"> Khóa học</Link> &gt;&gt;
-      <Link to="/khoa-hoc/lop-1"> Lớp 1</Link> &gt;&gt;
-      <Link to="/khoa-hoc/lop-1/toan-nang-cao"> Toán lớp 1 nâng cao</Link> &gt;&gt;
+      <Link to="/">Trang chủ</Link> &gt;&gt;&nbsp;
+      <Link to="/khoa-hoc">Khóa học</Link> &gt;&gt;&nbsp;
+      <Link to="/khoa-hoc/lop-1">Lớp 1</Link> &gt;&gt;&nbsp;
+      <Link to="/khoa-hoc/lop-1/toan-nang-cao">Toán lớp 1 nâng cao</Link> &gt;&gt;&nbsp;
       <span>{exam?.title}</span>
     </div>
+
 
 
       <div className="exam-header">
@@ -244,18 +245,20 @@ const DoExam = ({ exam, setActivePage, onSubmit }) => {
 
 
 
-        <button className="back-btn" onClick={() => setActivePage('exams')}>← Quay lại</button>
+        <button className="back-btn" onClick={goBackToExamList}>← Quay lại</button>
 
       </div>
+    </div>
     </div>
   );
 };
 
 DoExam.propTypes = {
   exam: PropTypes.object,
-  setActivePage: PropTypes.func.isRequired,
+  goBackToExamList: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
+
 
 export default DoExam;
 

@@ -1,6 +1,11 @@
+import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from 'react-router-dom';
 
-
-import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Khoahoc from './Khoahoc';
 import Chitietkhoahoc from './Chitietkhoahoc';
@@ -8,120 +13,120 @@ import Exams from './exams';
 import DoExam from './DoExam';
 import ResultExam from './ResultExam';
 import ReviewAnswers from './ReviewAnswers';
+import Home from './pages/Home';
+import BangXepHang from './pages/BangXepHang';
+import Register from './pages/DangKy';
+import Login from './pages/DangNhap';
+import QuenMatKhau from './pages/QuenMatKhau';
+import DangKyKhoaHoc from './pages/DangKyKhoaHoc';
+import TaiLieu from './pages/TaiLieu';
 
+// AppWrapper để bọc Router
+function AppWrapper() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
 
 function App() {
-  const [activePage, setActivePage] = useState('home');
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const [doingExam, setDoingExam] = useState(null); // NEW
+  const [doingExam, setDoingExam] = useState(null);
   const [examAnswers, setExamAnswers] = useState({});
   const [examQuestions, setExamQuestions] = useState([]);
 
-    useEffect(() => {
-    console.log('examAnswers thay đổi:', examAnswers);
-  }, [examAnswers]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log('examQuestions thay đổi:', examQuestions);
-  }, [examQuestions]);
-
-  useEffect(() => {
-    console.log('activePage thay đổi:', activePage);
-  }, [activePage]);
-
-const handleExamSubmit = (answers, questions) => {
-  console.log("handleExamSubmit đã được định nghĩa:", handleExamSubmit);
-
-  setExamAnswers(answers);
-  setExamQuestions(questions);
-  setActivePage('result');  // thêm dòng này để chuyển trang
-};
-
-
-
-  useEffect(() => {
-  if (doingExam) {
-    setActivePage('doexam');
-      }
-    }, [doingExam]);
-
+  const handleExamSubmit = (answers, questions) => {
+    setExamAnswers(answers);
+    setExamQuestions(questions);
+    navigate('/result');
+  };
 
   return (
     <div>
-      <Header activePage={activePage} setActivePage={setActivePage} />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-
-          {activePage === 'home' && (
-            <div>
-              <h1>Trang chủ</h1>
-            </div>
-          )}
-
-      {activePage === 'courses' && (
-        <Khoahoc
-          activePage={activePage}
-          setActivePage={setActivePage}
-          setSelectedCourse={setSelectedCourse}
+        <Route
+          path="/courses"
+          element={
+            <Khoahoc setSelectedCourse={setSelectedCourse} />
+          }
         />
-      )}
-
-      {activePage === 'DetailedCourses' && (
-        <Chitietkhoahoc
-          activePage={activePage}
-          setActivePage={setActivePage}
-          selectedCourse={selectedCourse}
-          setSelectedCourse={setSelectedCourse}
+        <Route
+          path="/courses/detail"
+          element={
+            <Chitietkhoahoc
+              selectedCourse={selectedCourse}
+              setSelectedCourse={setSelectedCourse}
+            />
+          }
         />
-      )}
-
-      {activePage === 'exams' && (
-        <Exams setActivePage={setActivePage} 
-        setDoingExam={setDoingExam} 
-        setAnswers={setExamAnswers}
-        setQuestions={setExamQuestions}  // Đảm bảo giá trị này tồn tại
+        <Route
+          path="/exams"
+          element={
+            <Exams
+              setDoingExam={(exam) => {
+                setDoingExam(exam);
+                navigate('/doexam');
+              }}
+              setAnswers={setExamAnswers}
+              setQuestions={setExamQuestions}
+            />
+          }
         />
-      )}
-
-      {activePage === "doexam" && doingExam && (
-        <DoExam
-          key={doingExam?.id || "default"}
-          exam={doingExam}
-          setActivePage={setActivePage}
-          onSubmit={handleExamSubmit}  // Đảm bảo giá trị này tồn tại
+        <Route
+          path="/doexam"
+          element={
+            <DoExam
+              exam={doingExam}
+              onSubmit={handleExamSubmit}
+            />
+          }
         />
-      )}
-
-
-
-      {activePage === 'result' && examQuestions && (
-        <ResultExam
-          questions={examQuestions}
-          answers={examAnswers}
-          onRetry={() => {
-            setExamAnswers(null);
-            setExamQuestions(null);
-            setDoingExam(null);
-            setActivePage('exams');  // quay lại luyện tập
-          }}
-          onViewAnswers={() => {
-            setActivePage('reviewAnswers');
-          }}
+        <Route
+          path="/result"
+          element={
+            examQuestions.length > 0 ? (
+              <ResultExam
+                questions={examQuestions}
+                answers={examAnswers}
+                onRetry={() => {
+                  setExamAnswers({});
+                  setExamQuestions([]);
+                  setDoingExam(null);
+                  navigate('/exams');
+                }}
+                onViewAnswers={() => {
+                  navigate('/reviewAnswers');
+                }}
+              />
+            ) : (
+              <div>Chưa có kết quả.</div>
+            )
+          }
         />
-      )}
-
-      {activePage === 'reviewAnswers' && examQuestions && (
-  <ReviewAnswers
-    questions={examQuestions}
-    answers={examAnswers}
-    setActivePage={setActivePage}
-  />
-        )}
-
-
+        <Route
+          path="/reviewAnswers"
+          element={
+            <ReviewAnswers
+              questions={examQuestions}
+              answers={examAnswers}
+            />
+          }
+        />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<QuenMatKhau />} />
+        <Route path="/register-course" element={<DangKyKhoaHoc />} />
+        <Route path="/docs" element={<TaiLieu />} />
+        <Route path="/ranking" element={<BangXepHang />} />
+      </Routes>
     </div>
   );
 }
 
-export default App;
-
-
+export default AppWrapper;

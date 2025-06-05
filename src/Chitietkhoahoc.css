@@ -1,11 +1,13 @@
 /* 1. Header khóa học (breadcrumb + tiêu đề + mô tả):*/
 .course-header {
+  
   background-color: #efbdb8;
   padding: 20px 30px;
   text-align: center;
 }
 
 .breadcrumb {
+  padding-top:1%;
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   margin-bottom: 10px;

@@ -1,13 +1,12 @@
 import React from 'react';
-
-
-
+import { useNavigate } from 'react-router-dom';
+import Header from './components/Header';
 
 const styles = {
   container: {
     maxWidth: '800px',
     margin: '0 auto',
-    padding: '20px',
+    padding: '3%',
     fontFamily: "'Noto Sans', sans-serif",
     backgroundColor: '#f8f9fa',
     borderRadius: '16px',
@@ -36,20 +35,18 @@ const styles = {
     borderRadius: '8px',
     boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
     marginBottom: '20px',
-    textAlign: 'center', 
+    textAlign: 'center',
   },
-
   questionText: {
     fontSize: '16px',
     marginBottom: '10px',
   },
   image: {
     display: 'block',
-    margin: '10px auto',  
+    margin: '10px auto',
     maxWidth: '100%',
     height: 'auto',
   },
-
   answerBox: {
     padding: '10px 12px',
     borderRadius: '6px',
@@ -57,11 +54,11 @@ const styles = {
     marginBottom: '6px',
   },
   correctBox: {
-    backgroundColor: '#d4edda', // xanh nhạt
+    backgroundColor: '#d4edda',
     border: '1px solid #38b000',
   },
   wrongBox: {
-    backgroundColor: '#f8d7da', // đỏ nhạt
+    backgroundColor: '#f8d7da',
     border: '1px solid #d90429',
   },
   button: {
@@ -77,9 +74,13 @@ const styles = {
   },
 };
 
-const ReviewAnswers = ({ questions, answers, setActivePage }) => {
+const ReviewAnswers = ({ questions, answers }) => {
+  const navigate = useNavigate();
+
   return (
-    <div style={styles.container}>
+    <div>
+      <Header />
+    <div style={styles.container} >
       <p style={styles.breadcrumb}>
         Trang chủ &gt;&gt; Khóa học &gt;&gt; Lớp 1 &gt;&gt; Toán lớp 1 nâng cao &gt;&gt; Bài tập cuối chương I
       </p>
@@ -133,8 +134,6 @@ const ReviewAnswers = ({ questions, answers, setActivePage }) => {
                   const isUserChoice = userAnswer === choice;
                   const isCorrectChoice = q.correctAnswer === choice;
 
-                  const highlight = isUserChoice || isCorrectChoice;
-
                   const boxStyle = isUserChoice && !isCorrectChoice
                     ? styles.wrongBox
                     : isCorrectChoice
@@ -173,10 +172,11 @@ const ReviewAnswers = ({ questions, answers, setActivePage }) => {
         );
       })}
 
-      <button style={styles.button} onClick={() => setActivePage('result')}>
+      <button style={styles.button} onClick={() => navigate('/result')}>
         Quay lại kết quả
       </button>
     </div>
+        </div>
   );
 };
 

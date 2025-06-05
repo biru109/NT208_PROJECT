@@ -1,10 +1,11 @@
 /* CSS cho phần header */
+
 body, html {
     margin: 0;
-    margin-top:5px;
     padding: 0;
   }
 .header {
+    padding-top:5px;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
@@ -98,23 +99,25 @@ body, html {
   
   .login-btn,
   .register-btn {
+    overflow: hidden;
     width: 130.5px;
     height: 35.5px;
     font-family: 'Inter';
-    font-style: normal;
     font-weight: 700;
     font-size: 19px;
     line-height: 15px;
     text-align: center;
     color: #FFFFFF;
     background-color: #2054B2;
-    border-color: #2054B2;
     border-radius: 25px;
-    background: #2054B2;
     border: 0.5px solid #FFFFFF;
+    cursor: pointer; /* Thêm con trỏ tay */
+    transition: background-color 0.3s ease; /* Mượt hiệu ứng */
   }
-
-
+  .login-btn:hover,
+  .register-btn:hover {
+   background-color: rgb(76, 147, 253); /* Màu xanh nhạt hơn */
+ }
   
   /* Menu điều hướng */
   .menu {
@@ -141,9 +144,12 @@ body, html {
     color: #FFFFFF;
   }
 
+
+
   .menu a.active {
     font-weight: bold;
   }
+
 
   .menu a:hover{
     border-bottom: 5px solid rgb(76, 147, 253);

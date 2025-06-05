@@ -5,10 +5,13 @@ import LessonIcon from './images/Lesson.png';
 import bulbDefault from './images/bulb-default.png';
 import bulbActive from './images/bulb-active.png';
 import DoExam from './DoExam';
+import Header from './components/Header';
+import { useNavigate } from 'react-router-dom';
 
 
 
-const Exams = ({ setActivePage, setAnswers, setQuestions }) => {
+const Exams = ({setAnswers, setQuestions }) => {
+  const navigate = useNavigate();
   const [selectedGrade, setSelectedGrade] = useState("Lớp 1");
   const [currentExam, setCurrentExam] = useState(null);
   const [isDoingExam, setIsDoingExam] = useState(false);
@@ -117,24 +120,25 @@ const Exams = ({ setActivePage, setAnswers, setQuestions }) => {
   };
 
 if (isDoingExam && currentExam) {
-  return (
-    <DoExam
-      exam={currentExam}
-      setActivePage={() => {
-        setIsDoingExam(false);
-        setCurrentExam(null);
-      }}
-      onSubmit={(answers, questions) => {
-        setAnswers(answers);
-        setQuestions(questions);
-        setActivePage('result');
-      }}
-    />
-  );
-}
+    return (
+      <DoExam
+        exam={currentExam}
+        goBackToExamList={() => {
+          setIsDoingExam(false);
+          setCurrentExam(null);
+        }}
+        onSubmit={(answers, questions) => {
+          setAnswers(answers);
+          setQuestions(questions);
+          navigate('/result');  // Dùng navigate để chuyển trang
+        }}
+      />
+    );
+  }
 
-
   return (
+    <div>
+      <Header />
     <div className="baitap-container">
       <h2 className="title">ĐỀ THI TOÁN {selectedGrade.toUpperCase()}</h2>
       <p className="subtitle">
@@ -187,6 +191,7 @@ if (isDoingExam && currentExam) {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

@@ -1,19 +1,28 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import falseImg from './images/false.png';
 import trueImg from './images/true.png';
 import './ResultExam.css';
+import Header from './components/Header';
 
 const ResultExam = ({ questions, answers, onRetry, onViewAnswers }) => {
+  const navigate = useNavigate();
+
   const correctCount = questions.reduce((count, q) => {
     return answers[q.id] === q.correctAnswer ? count + 1 : count;
   }, 0);
   const wrongCount = questions.length - correctCount;
 
   return (
+    <div>
+      <Header />
     <div className="result-container">
-      <h2 className="result-title">Bài tập cuối chương I</h2> <br></br>
+      <h2 className="result-title">Bài tập cuối chương I</h2>
+      <br />
 
-      <h3 className="result-subtitle">Kết quả luyện tập</h3> <br></br> <br></br>
+      <h3 className="result-subtitle">Kết quả luyện tập</h3>
+      <br />
+      <br />
 
       <div className="result-summary">
         <div className="result-block">
@@ -30,10 +39,20 @@ const ResultExam = ({ questions, answers, onRetry, onViewAnswers }) => {
       </div>
 
       <div className="result-buttons">
-        <button className="result-button disabled" disabled>Xem xếp hạng</button>
-        <button className="result-button" onClick={onViewAnswers}>Xem đáp án</button>
-        <button className="result-button" onClick={onRetry}>Luyện tập lại</button>
+        <button
+          className="result-button"
+          onClick={() => navigate('/ranking')}
+        >
+          Xem xếp hạng
+        </button>
+        <button className="result-button" onClick={onViewAnswers}>
+          Xem đáp án
+        </button>
+        <button className="result-button" onClick={onRetry}>
+          Luyện tập lại
+        </button>
       </div>
+    </div>
     </div>
   );
 };
