@@ -25,8 +25,11 @@ export default function Header() {
 
         <div className="search-bar">
           <input type="text" placeholder="Tìm kiếm khóa học, bài học..." />
-          <button className="search-btn"><img src={kinhlup} alt="Tìm kiếm" /></button>
+          <button className="search-btn">
+            <img src={kinhlup} alt="Tìm kiếm" />
+          </button>
         </div>
+
 
         <div className="auth-buttons">
           <Link to="/login">

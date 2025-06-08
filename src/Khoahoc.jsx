@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './Khoahoc.css';
 import LessonIcon from './images/Lesson.png';
 import khoahocImage from './images/khoahoc.png';
-import Header from './components/Header';
 
 const Khoahoc = ({ setActivePage, setSelectedCourse }) => {
   const navigate = useNavigate();
@@ -42,7 +41,6 @@ const Khoahoc = ({ setActivePage, setSelectedCourse }) => {
 
   return (
     <div>
-      <Header />
       <div className="courses-container">
         <div className="content-background">
           <h1 className="title-main">KHÓA HỌC TOÁN</h1>

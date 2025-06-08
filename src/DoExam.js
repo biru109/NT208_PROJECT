@@ -5,7 +5,6 @@ import './doexam.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import pic_exam from './images/pic_exam.png';
-import Header from './components/Header';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -128,7 +127,6 @@ const DoExam = ({ exam, goBackToExamList, onSubmit }) => {
 
   return (
     <div>
-      <Header />
     <div className="doexam-container">
       <div className="exam-content">
 

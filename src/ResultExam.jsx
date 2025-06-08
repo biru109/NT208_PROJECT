@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import falseImg from './images/false.png';
 import trueImg from './images/true.png';
 import './ResultExam.css';
-import Header from './components/Header';
 
 const ResultExam = ({ questions, answers, onRetry, onViewAnswers }) => {
   const navigate = useNavigate();
@@ -15,7 +14,6 @@ const ResultExam = ({ questions, answers, onRetry, onViewAnswers }) => {
 
   return (
     <div>
-      <Header />
     <div className="result-container">
       <h2 className="result-title">Bài tập cuối chương I</h2>
       <br />

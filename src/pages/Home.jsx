@@ -73,7 +73,7 @@ function Home() {
       <main className="gioithieu">
         <p className="gt1">Học tập trực tuyến dành cho học sinh Tiểu học</p>
         <p className="gt2">Nền tảng học tập chất lượng cao với video bài giảng sinh động, bài tập thực hành và hệ thống đánh giá kết quả học tập cho học sinh . </p>
-        <button className="btgt"> Bắt đầu học ngay! </button>
+        <button className="btgt" onClick={() => navigate('/courses')}>Bắt đầu học ngay!</button>
       </main>
 
       <div className="gioithieu2">

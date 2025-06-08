@@ -8,12 +8,15 @@ import { useState, useEffect } from "react";
 
 export default function Register() {
   const location = useLocation();
+
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
+
+  const [error, setError] = useState(""); // <-- Đây là phần bị thiếu gây lỗi
 
   useEffect(() => {
     if (location.state && location.state.contact) {
@@ -24,16 +27,41 @@ export default function Register() {
     }
   }, [location.state]);
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-    // Xử lý đăng ký tại đây
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const phoneRegex = /^(0|\+84)[0-9]{9}$/;
+
+  if (!formData.fullName.trim()) {
+    setError("Vui lòng nhập họ và tên");
+    return;
+  }
+
+  if (!phoneRegex.test(formData.phoneNumber)) {
+    setError("Số điện thoại không hợp lệ");
+    return;
+  }
+
+  if (formData.password.length < 6) {
+    setError("Mật khẩu phải có ít nhất 6 ký tự");
+    return;
+  }
+
+  if (formData.password !== formData.confirmPassword) {
+    setError("Mật khẩu không khớp");
+    return;
+  }
+
+  setError(""); // Xóa lỗi cũ nếu hợp lệ
+  console.log("Thông tin đăng ký hợp lệ", formData);
+};
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f5f9ff] py-8">
@@ -112,6 +140,13 @@ export default function Register() {
           >
             Đăng ký
           </button>
+
+          {error && (
+            <div className="bg-red-100 text-red-700 px-4 py-2 rounded-lg mt-4 text-center text-lg font-semibold">
+              {error}
+            </div>
+          )}
+
         </form>
 
         <p className="text-center text-[#808080] text-lg mt-6">

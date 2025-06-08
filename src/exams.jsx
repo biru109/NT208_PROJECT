@@ -5,7 +5,7 @@ import LessonIcon from './images/Lesson.png';
 import bulbDefault from './images/bulb-default.png';
 import bulbActive from './images/bulb-active.png';
 import DoExam from './DoExam';
-import Header from './components/Header';
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -138,7 +138,7 @@ if (isDoingExam && currentExam) {
 
   return (
     <div>
-      <Header />
+
     <div className="baitap-container">
       <h2 className="title">ĐỀ THI TOÁN {selectedGrade.toUpperCase()}</h2>
       <p className="subtitle">

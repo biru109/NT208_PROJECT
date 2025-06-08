@@ -4,39 +4,41 @@ import {
   Routes,
   Route,
   useNavigate,
+  useLocation,
 } from 'react-router-dom';
 
 import Header from './components/Header';
+import ScrollToTopButton from './components/ScrollToTopButton';
+
+import Home from './pages/Home';
 import Khoahoc from './Khoahoc';
 import Chitietkhoahoc from './Chitietkhoahoc';
 import Exams from './exams';
 import DoExam from './DoExam';
 import ResultExam from './ResultExam';
 import ReviewAnswers from './ReviewAnswers';
-import Home from './pages/Home';
-import BangXepHang from './pages/BangXepHang';
 import Register from './pages/DangKy';
 import Login from './pages/DangNhap';
 import QuenMatKhau from './pages/QuenMatKhau';
 import DangKyKhoaHoc from './pages/DangKyKhoaHoc';
 import TaiLieu from './pages/TaiLieu';
+import BangXepHang from './pages/BangXepHang';
 
-// AppWrapper để bọc Router
-function AppWrapper() {
-  return (
-    <Router>
-      <App />
-    </Router>
-  );
-}
 
-function App() {
+
+
+
+function AppContent() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [doingExam, setDoingExam] = useState(null);
   const [examAnswers, setExamAnswers] = useState({});
   const [examQuestions, setExamQuestions] = useState([]);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const hideHeaderRoutes = ['/login', '/register', '/forgot-password'];
+  const showHeader = !hideHeaderRoutes.includes(location.pathname);
 
   const handleExamSubmit = (answers, questions) => {
     setExamAnswers(answers);
@@ -46,24 +48,13 @@ function App() {
 
   return (
     <div>
-      <Header />
+      {showHeader && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
-
-        <Route
-          path="/courses"
-          element={
-            <Khoahoc setSelectedCourse={setSelectedCourse} />
-          }
-        />
+        <Route path="/courses" element={<Khoahoc setSelectedCourse={setSelectedCourse} />} />
         <Route
           path="/courses/detail"
-          element={
-            <Chitietkhoahoc
-              selectedCourse={selectedCourse}
-              setSelectedCourse={setSelectedCourse}
-            />
-          }
+          element={<Chitietkhoahoc selectedCourse={selectedCourse} setSelectedCourse={setSelectedCourse} />}
         />
         <Route
           path="/exams"
@@ -78,15 +69,7 @@ function App() {
             />
           }
         />
-        <Route
-          path="/doexam"
-          element={
-            <DoExam
-              exam={doingExam}
-              onSubmit={handleExamSubmit}
-            />
-          }
-        />
+        <Route path="/doexam" element={<DoExam exam={doingExam} onSubmit={handleExamSubmit} />} />
         <Route
           path="/result"
           element={
@@ -100,24 +83,14 @@ function App() {
                   setDoingExam(null);
                   navigate('/exams');
                 }}
-                onViewAnswers={() => {
-                  navigate('/reviewAnswers');
-                }}
+                onViewAnswers={() => navigate('/reviewAnswers')}
               />
             ) : (
               <div>Chưa có kết quả.</div>
             )
           }
         />
-        <Route
-          path="/reviewAnswers"
-          element={
-            <ReviewAnswers
-              questions={examQuestions}
-              answers={examAnswers}
-            />
-          }
-        />
+        <Route path="/reviewAnswers" element={<ReviewAnswers questions={examQuestions} answers={examAnswers} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<QuenMatKhau />} />
@@ -125,7 +98,17 @@ function App() {
         <Route path="/docs" element={<TaiLieu />} />
         <Route path="/ranking" element={<BangXepHang />} />
       </Routes>
+
+      <ScrollToTopButton /> {/* ✅ thêm ở cuối, bên trong AppContent */}
     </div>
+  );
+}
+
+function AppWrapper() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 

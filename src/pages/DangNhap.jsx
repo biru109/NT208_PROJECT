@@ -1,8 +1,7 @@
 import { useState } from "react";
 import logo from '../images/LogoDangKy.png'; 
-import DienThoai from '../images/DienThoai.png'
-import HoTen from '../images/HoVaTen.png'
-import MatKhau from '../images/MatKhau.png'
+import DienThoai from '../images/DienThoai.png';
+import MatKhau from '../images/MatKhau.png';
 import { Link } from 'react-router-dom';
 
 export default function Login() {
@@ -11,6 +10,8 @@ export default function Login() {
     password: "",
   });
 
+  const [error, setError] = useState(""); // ✅ Thêm state lưu lỗi
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -18,12 +19,25 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Xử lý logic đăng nhập tại đây
+
+    const phoneRegex = /^(0|\+84)[0-9]{9}$/;
+
+    if (!phoneRegex.test(formData.phoneNumber)) {
+      setError("Số điện thoại không hợp lệ");
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setError("Mật khẩu phải có ít nhất 6 ký tự");
+      return;
+    }
+
+    setError(""); // ✅ Xóa lỗi cũ nếu hợp lệ
+    console.log("Thông tin đăng nhập hợp lệ", formData);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f5f9ff] py-8">
+    <div className="min-h-screen flex items-center justify-center bg-[#f5f9ff]">
       <div className="bg-white p-12 rounded-3xl w-full max-w-lg">
         <div className="flex flex-col items-center mb-3">
           <img src={logo} alt="Logo" />
@@ -68,14 +82,21 @@ export default function Login() {
           >
             Đăng nhập
           </button>
+
+          {error && (
+            <div className="bg-red-100 text-red-700 px-4 py-2 rounded-lg mt-4 text-center text-lg font-semibold">
+              {error}
+            </div>
+          )}
         </form>
+
         <div className="flex justify-between py-4 text-lg">
-            <a href="/forgot-password" className="text-[#2054B2] hover:underline">
+          <Link to="/forgot-password" className="text-[#2054B2] hover:underline">
             Quên mật khẩu?
-            </a>
-            <a href="/register" className="text-[#2054B2] hover:underline">
+          </Link>
+          <Link to="/register" className="text-[#2054B2] hover:underline">
             Đăng ký tài khoản
-            </a>
+          </Link>
         </div>
       </div>
     </div>

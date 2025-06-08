@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from './components/Header';
 
 const styles = {
   container: {
@@ -79,7 +78,6 @@ const ReviewAnswers = ({ questions, answers }) => {
 
   return (
     <div>
-      <Header />
     <div style={styles.container} >
       <p style={styles.breadcrumb}>
         Trang chủ &gt;&gt; Khóa học &gt;&gt; Lớp 1 &gt;&gt; Toán lớp 1 nâng cao &gt;&gt; Bài tập cuối chương I

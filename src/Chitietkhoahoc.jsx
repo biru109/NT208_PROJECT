@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Chitietkhoahoc.css';
-import Header from './components/Header';
 import LessonIcon from './images/Lesson.png';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -80,7 +79,6 @@ const Chitietkhoahoc = ({ setActivePage, selectedCourse }) => {
 
   return (
     <div>
-      <Header />
 
       <div className="course-header">
         <div className="breadcrumb">
