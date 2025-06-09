@@ -61,10 +61,17 @@ const handleSubmit = (e) => {
   console.log("Thông tin đăng ký hợp lệ", formData);
 };
 
+  useEffect(() => {
+    document.body.classList.add("login-body");
 
+    // Khi rời khỏi trang, gỡ class ra
+    return () => {
+      document.body.classList.remove("login-body");
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f5f9ff] py-8">
+    <div className="min-h-screen flex items-center justify-center mt-[2%] mb-[3%]">
       <div className="bg-white p-12 rounded-3xl w-full max-w-lg">
         <div className="flex flex-col items-center mb-3">
             <img src={logo}  />

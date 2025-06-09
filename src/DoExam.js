@@ -132,9 +132,9 @@ const DoExam = ({ exam, goBackToExamList, onSubmit }) => {
 
     <div className="breadcrumb">
       <Link to="/">Trang chủ</Link> &gt;&gt;&nbsp;
-      <Link to="/khoa-hoc">Khóa học</Link> &gt;&gt;&nbsp;
-      <Link to="/khoa-hoc/lop-1">Lớp 1</Link> &gt;&gt;&nbsp;
-      <Link to="/khoa-hoc/lop-1/toan-nang-cao">Toán lớp 1 nâng cao</Link> &gt;&gt;&nbsp;
+      <Link to="/courses">Khóa học</Link> &gt;&gt;&nbsp;
+      <Link to="/courses/lop-1">Lớp 1</Link> &gt;&gt;&nbsp;
+      <Link to="/courses/lop-1/toan-nang-cao">Toán lớp 1 nâng cao</Link> &gt;&gt;&nbsp;
       <span>{exam?.title}</span>
     </div>
 

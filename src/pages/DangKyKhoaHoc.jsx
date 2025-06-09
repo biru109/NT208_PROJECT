@@ -1,6 +1,6 @@
 import Header from '../components/Header'; 
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import dk from "../images/DangKyKH.jpg";
 import './DangKyKhoaHoc.css';
@@ -17,12 +17,29 @@ export default function DangKy(){
     const [name, setName] = useState('');
     const [gender, setGender] = useState('Nam');
     const [grade, setGrade] = useState('Lớp 1');
+    const [error, setError] = useState(''); // thêm state lỗi tên
+    const nameInputRef = useRef(null); // ref để focus input
+    const navigate = useNavigate(); // dùng để chuyển trang
 
     // Hàm xử lý khi bấm nút Ghi danh
     const handleSubmit = () => {
-        // Xử lý back-end: Gửi dữ liệu đăng ký đến server
+        // Giả lập danh sách tên đã đăng ký (sẽ thay bằng call API real trong backend)
+        const existingNames = ['Nguyễn Văn A', 'Trần Thị B'];
+
+        if (existingNames.includes(name.trim())) {
+            setError('Tên đã tồn tại. Vui lòng chọn tên khác.');
+            nameInputRef.current?.focus(); // focus vào input tên
+            return;
+        }
+
+        setError(''); // clear lỗi nếu không trùng
+
+        // Gửi dữ liệu đăng ký đến backend (chừa chỗ xử lý)
         console.log({ name, gender, grade });
         alert('Đã ghi danh thành công!');
+
+        // Chuyển sang trang chi tiết khóa học sau khi ghi danh
+        navigate('/courses/detail');
     };
 
     return (
@@ -54,10 +71,17 @@ export default function DangKy(){
                             {/* Form đăng ký */}
                             <div className="flex-[6] bg-white p-6 rounded-3xl border-2 border-[#f0f0f0] shadow-2xl mb-24">
                                 <h3 className="text-2xl font-bold mb-3 font-noto">Thông tin đăng ký</h3>
-                                <hr class="kengang" />
+                                <hr className="kengang" />
                                 <label className="block mb-4 mt-8 font-bold text-xl">Họ và tên</label>
-                                <input type="text" placeholder="Nhập họ và tên..." className="w-full h-12 text-lg p-4 mb-3 border-[0.5px] border-black rounded-2xl" 
-                                    value={name} onChange={(e) => setName(e.target.value)} />
+                                <input
+                                    ref={nameInputRef}
+                                    type="text"
+                                    placeholder="Nhập họ và tên..."
+                                    className="w-full h-12 text-lg p-4 mb-1 border-[0.5px] border-black rounded-2xl" 
+                                    value={name} 
+                                    onChange={(e) => setName(e.target.value)} 
+                                />
+                                {error && <p className="text-red-600 text-sm mt-1">{error}</p>}
                                 <label className="block mb-4 mt-12 font-bold text-xl">Giới tính</label>
                                 <select 
                                     className="w-full h-12 mb-3 text-xl border-[0.5px] border-black rounded-2xl px-4" 
@@ -66,7 +90,7 @@ export default function DangKy(){
                                     >
                                     <option>Nam</option>
                                     <option>Nữ</option>
-                                    </select>
+                                </select>
                                 <label className="block mb-4 mt-12 font-bold text-xl">Lớp hiện tại</label>
                                 <select className="w-full h-12 mb-3 text-xl border-[0.5px] border-black rounded-2xl px-4" 
                                     value={grade} onChange={(e) => setGrade(e.target.value)}>
@@ -85,11 +109,7 @@ export default function DangKy(){
                         </div>
                     </div>
                 </div> 
-            
             </div>
-
-            
         </div>
-
     );
 }

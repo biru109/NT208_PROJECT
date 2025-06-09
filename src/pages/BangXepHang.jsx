@@ -2,6 +2,7 @@ import Header from '../components/Header';
 import { Link } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
 
+
 const rankingData = [
     { name: "Nguyễn Văn A", score: 10, time: "00 : 30 : 00" },
     { name: "Nguyễn Văn B", score: 10, time: "00 : 35 : 00" },
@@ -17,6 +18,11 @@ const rankingData = [
   ];
   
   export default function RankingTable() {
+    // Người dùng hiện tại
+    //Xử lý BackEnd ở đây để lấy tên và thứ hạng hiện tạitại
+    const currentUserName = "Nguyễn Văn A";
+    const currentUserIndex = rankingData.findIndex(user => user.name === currentUserName);
+    const currentUserRank = currentUserIndex >= 0 ? currentUserIndex + 1 : null;
     return (
         <div>
             <Header />
@@ -54,6 +60,28 @@ const rankingData = [
                 </table>
                 </div>
             </div>
+
+            {/* Footer hiển thị tên và thứ hạng */}
+<div className="fixed bottom-0 left-0 w-full bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#1E40AF] text-white font-noto z-50 shadow-xl rounded-t-2xl">
+  {currentUserRank ? (
+    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-12 py-3 px-6 text-lg sm:text-xl font-semibold tracking-wide">
+      <div className="flex items-center gap-2">
+        <span className="text-white/80">👤</span>
+        <span className="text-white">Bạn: <strong>{currentUserName}</strong></span>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-yellow-300 text-xl">🏆</span>
+        <span className="text-white">Thứ hạng: <strong className="text-yellow-300">#{currentUserRank}</strong></span>
+      </div>
+    </div>
+  ) : (
+    <div className="text-center py-4 text-lg sm:text-xl">
+      Bạn chưa có trong bảng xếp hạng.
+    </div>
+  )}
+</div>
+
+
         </div>
     );
   }

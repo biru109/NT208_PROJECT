@@ -3,6 +3,7 @@ import logo from '../images/LogoDangKy.png';
 import DienThoai from '../images/DienThoai.png'
 import HoTen from '../images/HoVaTen.png'
 import MatKhau from '../images/MatKhau.png'
+import { useEffect } from "react";
 
 export default function ForgotPassword() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -16,9 +17,16 @@ export default function ForgotPassword() {
     console.log("Số điện thoại:", phoneNumber);
     // Xử lý logic gửi mã OTP tại đây
   };
+  useEffect(() => {
+    document.body.classList.add("login-body");
 
+    // Khi rời khỏi trang, gỡ class ra
+    return () => {
+      document.body.classList.remove("login-body");
+    };
+  }, []);
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f5f9ff] py-8">
+    <div className="min-h-screen flex items-center justify-center mt-[2%] mb-[3%]">
       <div className="bg-white p-12 rounded-3xl w-full max-w-lg">
         <div className="flex flex-col items-center mb-2">
           <img src={logo} alt="HiStudy Logo" />
