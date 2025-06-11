@@ -45,7 +45,7 @@ export default function Login() {
     try {
       // Make the POST request to login the user
       const response = await axios.post(
-        "http://localhost:8080/v1/auth/login",
+        "http://103.130.219.194:8080/v1/auth/login",
         requestData,
         {
           headers: {

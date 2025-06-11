@@ -64,7 +64,7 @@ export default function Register() {
     try {
       // Make the POST request to register the user
       const response = await axios.post(
-        "http://localhost:8080/v1/auth/register",
+        "http://103.130.219.194:8080/v1/auth/register",
         requestData,
         {
           headers: {

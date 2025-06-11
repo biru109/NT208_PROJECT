@@ -24,7 +24,7 @@ export default function Header() {
 
     if (accessToken && userId) {
       axios
-        .get(`http://localhost:8080/v1/users/${userId}`, {
+        .get(`http://103.130.219.194:8080/v1/users/${userId}`, {
           headers: {
             accept: "application/json",
             Authorization: `Bearer ${accessToken}`,
