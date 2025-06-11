@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import './exams.css';
-import CalculatorIcon from './images/calculator.png';
-import LessonIcon from './images/Lesson.png';
-import bulbDefault from './images/bulb-default.png';
-import bulbActive from './images/bulb-active.png';
-import DoExam from './DoExam';
+import React, { useState, useEffect } from "react";
+import "./exams.css";
+import CalculatorIcon from "./images/calculator.png";
+import LessonIcon from "./images/Lesson.png";
+import bulbDefault from "./images/bulb-default.png";
+import bulbActive from "./images/bulb-active.png";
+import DoExam from "./DoExam";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-
-
-const Exams = ({setAnswers, setQuestions }) => {
+const Exams = ({ setAnswers, setQuestions }) => {
   const navigate = useNavigate();
   const [selectedGrade, setSelectedGrade] = useState("Lớp 1");
   const [currentExam, setCurrentExam] = useState(null);
   const [isDoingExam, setIsDoingExam] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const gradeTabs = ["Lớp 1", "Lớp 2", "Lớp 3", "Lớp 4", "Lớp 5"];
 
@@ -38,7 +37,8 @@ const Exams = ({setAnswers, setQuestions }) => {
       },
       {
         title: "So sánh số lượng",
-        subtitle: "So sánh nhiều hơn, ít hơn hoặc bằng nhau giữa các nhóm đồ vật.",
+        subtitle:
+          "So sánh nhiều hơn, ít hơn hoặc bằng nhau giữa các nhóm đồ vật.",
         level: "Trung bình",
         questionCount: 15,
         icon: CalculatorIcon,
@@ -119,7 +119,25 @@ const Exams = ({setAnswers, setQuestions }) => {
     ],
   };
 
-if (isDoingExam && currentExam) {
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (accessToken) {
+      setIsLoggedIn(true); // User is logged in
+    } else {
+      setIsLoggedIn(false); // User is not logged in
+    }
+  }, []);
+
+  if (!isLoggedIn) {
+    return (
+      <div className="baitap-container">
+        <h2 className="title">Vui lòng đăng nhập để sử dụng tính năng này</h2>
+      </div>
+    );
+  }
+
+  if (isDoingExam && currentExam) {
     return (
       <DoExam
         exam={currentExam}
@@ -130,7 +148,7 @@ if (isDoingExam && currentExam) {
         onSubmit={(answers, questions) => {
           setAnswers(answers);
           setQuestions(questions);
-          navigate('/result');  // Dùng navigate để chuyển trang
+          navigate("/result"); // Dùng navigate để chuyển trang
         }}
       />
     );
@@ -138,63 +156,73 @@ if (isDoingExam && currentExam) {
 
   return (
     <div>
+      <div className="baitap-container">
+        <h2 className="title">ĐỀ THI TOÁN {selectedGrade.toUpperCase()}</h2>
+        <p className="subtitle">
+          Luyện tập những đề thi được biên soạn bởi những Giáo viên giàu kinh
+          nghiệm.
+        </p>
 
-    <div className="baitap-container">
-      <h2 className="title">ĐỀ THI TOÁN {selectedGrade.toUpperCase()}</h2>
-      <p className="subtitle">
-        Luyện tập những đề thi được biên soạn bởi những Giáo viên giàu kinh nghiệm.
-      </p>
+        <div className="tabs">
+          {gradeTabs.map((tab, idx) => (
+            <button
+              key={idx}
+              className={`tab ${tab === selectedGrade ? "active" : ""}`}
+              onClick={() => setSelectedGrade(tab)}
+            >
+              <img
+                src={tab === selectedGrade ? bulbActive : bulbDefault}
+                alt="bulb icon"
+                className="icon-img"
+              />
+              {tab}
+            </button>
+          ))}
+        </div>
 
-      <div className="tabs">
-        {gradeTabs.map((tab, idx) => (
-          <button
-            key={idx}
-            className={`tab ${tab === selectedGrade ? 'active' : ''}`}
-            onClick={() => setSelectedGrade(tab)}
-          >
-            <img
-              src={tab === selectedGrade ? bulbActive : bulbDefault}
-              alt="bulb icon"
-              className="icon-img"
-            />
-            {tab}
-          </button>
-        ))}
-      </div>
-
-      <div className="cards">
-        {(exercisesByGrade[selectedGrade] || []).map((item, index) => (
-          <div className="card" key={index}>
-            <div className="card-header-exams">
-              <div className="label" style={{ backgroundColor: item.labelColor }}>
-                {item.level}
+        <div className="cards">
+          {(exercisesByGrade[selectedGrade] || []).map((item, index) => (
+            <div className="card" key={index}>
+              <div className="card-header-exams">
+                <div
+                  className="label"
+                  style={{ backgroundColor: item.labelColor }}
+                >
+                  {item.level}
+                </div>
+                <img
+                  src={item.icon}
+                  alt="Calculator Icon"
+                  className="card-icon"
+                />
               </div>
-              <img src={item.icon} alt="Calculator Icon" className="card-icon" />
-            </div>
-            <div className="card-content">
-              <h3>{item.title}</h3>
-              <p>{item.subtitle}</p>
-              <div className="card-meta">
-                <img src={LessonIcon} alt="Lesson Icon" className="lesson-icon" />
-                <span>{item.questionCount} câu</span>
+              <div className="card-content">
+                <h3>{item.title}</h3>
+                <p>{item.subtitle}</p>
+                <div className="card-meta">
+                  <img
+                    src={LessonIcon}
+                    alt="Lesson Icon"
+                    className="lesson-icon"
+                  />
+                  <span>{item.questionCount} câu</span>
+                </div>
+                <button
+                  className="start-btn"
+                  onClick={() => {
+                    setCurrentExam(item);
+                    setIsDoingExam(true);
+                  }}
+                >
+                  Bắt đầu làm
+                </button>
               </div>
-                  <button
-                    className="start-btn"
-                    onClick={() => {
-                      setCurrentExam(item);
-                      setIsDoingExam(true);
-                    }}
-                  >
-                    Bắt đầu làm
-                  </button>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
 
 export default Exams;
-
