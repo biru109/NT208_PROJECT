@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Chitietkhoahoc.css';
-import LessonIcon from './images/Lesson.png';
+import LessonIcon from '../images/Lesson.png';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 

@@ -5,7 +5,7 @@ import './Home.css'; // Import file CSS
 import giaovien from '../images/giaovien.png'; 
 import baigiang from '../images/Lesson.png'; 
 import baitap from '../images/baitap.png'; 
-import LopMenu from "../components/KhoaHoc";
+import LopMenu from "../components/KhoaHocTrongHome";
 import khoahocImage from "../images/khoahoc.png";
 import LessonCard from '../components/BaiHoc';
 import BaiTap from '../components/BaiTap';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Khoahoc.css';
-import LessonIcon from './images/Lesson.png';
-import khoahocImage from './images/khoahoc.png';
+import LessonIcon from '../images/Lesson.png';
+import khoahocImage from '../images/khoahoc.png';
 
 const Khoahoc = ({ setActivePage, setSelectedCourse }) => {
   const navigate = useNavigate();

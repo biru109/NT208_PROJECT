@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import falseImg from './images/false.png';
-import trueImg from './images/true.png';
+import falseImg from '../images/false.png';
+import trueImg from '../images/true.png';
 import './ResultExam.css';
 
 const ResultExam = ({ questions, answers, onRetry, onViewAnswers }) => {

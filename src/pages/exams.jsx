@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './exams.css';
-import CalculatorIcon from './images/calculator.png';
-import LessonIcon from './images/Lesson.png';
-import bulbDefault from './images/bulb-default.png';
-import bulbActive from './images/bulb-active.png';
+import CalculatorIcon from '../images/calculator.png';
+import LessonIcon from '../images/Lesson.png';
+import bulbDefault from '../images/bulb-default.png';
+import bulbActive from '../images/bulb-active.png';
 import DoExam from './DoExam';
 
 import { useNavigate } from 'react-router-dom';

@@ -11,12 +11,12 @@ import Header from './components/Header';
 import ScrollToTopButton from './components/ScrollToTopButton';
 
 import Home from './pages/Home';
-import Khoahoc from './Khoahoc';
-import Chitietkhoahoc from './Chitietkhoahoc';
-import Exams from './exams';
-import DoExam from './DoExam';
-import ResultExam from './ResultExam';
-import ReviewAnswers from './ReviewAnswers';
+import Khoahoc from './pages/Khoahoc';
+import Chitietkhoahoc from './pages/Chitietkhoahoc';
+import Exams from './pages/exams';
+import DoExam from './pages/DoExam';
+import ResultExam from './pages/ResultExam';
+import ReviewAnswers from './pages/ReviewAnswers';
 import Register from './pages/DangKy';
 import Login from './pages/DangNhap';
 import QuenMatKhau from './pages/QuenMatKhau';

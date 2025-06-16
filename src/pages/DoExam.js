@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import './doexam.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import pic_exam from './images/pic_exam.png';
+import pic_exam from '../images/pic_exam.png';
 import { useNavigate } from 'react-router-dom';
 
 
