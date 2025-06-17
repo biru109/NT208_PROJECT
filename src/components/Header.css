@@ -1,0 +1,72 @@
+/* src/components/Header.css */
+
+/* Header Container */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0351c7; /* Màu nền của header */
+  padding: 10px 20px;        /* Padding cho header */        
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Thêm bóng đổ để nổi bật */
+}
+
+/* Logo */
+.app-header .logo h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Danh sách các liên kết trong header */
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+/* Các mục liên kết */
+.nav-links li {
+  margin-left: 30px;  /* Khoảng cách giữa các link */
+}
+
+.nav-links a {
+  text-decoration: none;             /* Màu chữ trắng */
+  color: #3669d7;
+  font-size: 23px;           /* Kích thước chữ */
+  font-weight: bold;         /* Chữ đậm */
+  transition: color 0.3s ease, transform 0.3s ease;  /* Hiệu ứng hover */
+}
+
+/* Hiệu ứng hover khi di chuột lên các liên kết */
+.nav-links a:hover {
+  color: #d3d3d3;            /* Màu chữ khi hover */
+  transform: scale(1.05);    /* Tăng kích thước nhẹ khi hover */
+}
+
+/* Đảm bảo các liên kết không bị gạch chân khi hover */
+.nav-links a:focus {
+  outline: none;             /* Loại bỏ outline khi nhấn */
+}
+
+/* Responsive cho thiết bị di động */
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;  /* Căn chỉnh theo chiều dọc trên thiết bị nhỏ */
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-direction: column;  /* Các liên kết sẽ xếp dọc khi trên mobile */
+    margin-top: 10px;
+  }
+
+  .nav-links li {
+    margin-left: 0;
+    margin-top: 10px;         /* Khoảng cách giữa các link */
+  }
+
+  .nav-links a {
+    font-size: 16px;          /* Giảm kích thước chữ trên mobile */
+  }
+}
