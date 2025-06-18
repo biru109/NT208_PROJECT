@@ -28,23 +28,6 @@ const CourseList = ({ courses, onEdit, onDelete, onEditExercises, onDeleteExerci
                             {/* Nút Xóa Khóa Học */}
                             <button onClick={() => onDelete(course.id)}>Xóa Khóa Học</button>
                         </div>
-
-                        {/* Hiển thị danh sách bài tập của khóa học */}
-                        <h4>Các Bài Tập</h4>
-                        {/* Kiểm tra nếu course.exercises là mảng */}
-                        {Array.isArray(course.exercises) && course.exercises.length > 0 ? (
-                            <ul>
-                                {course.exercises.map(exercise => (
-                                    <li key={exercise.id}>
-                                        <p>{exercise.title}</p>
-                                        <button onClick={() => onEditExercises(course.id, exercise)}>Chỉnh sửa Bài Tập</button>
-                                        <button onClick={() => onDeleteExercise(course.id, exercise.id)}>Xóa Bài Tập</button>
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : (
-                            <p>Chưa có bài tập cho khóa học này.</p>
-                        )}
                     </li>
                 ))}
             </ul>

@@ -12,31 +12,29 @@ const EditExamPage = () => {
     const [selectedExam, setSelectedExam] = useState(null);
     const [isEditingQuestion, setIsEditingQuestion] = useState(false);
 
-    // Thêm bài tập mới
     const handleAddExam = () => {
         const newId = exams.length ? exams[exams.length - 1].id + 1 : 1;
         const newExamData = { ...newExam, id: newId, questions: [] };
         setExams([...exams, newExamData]);
-        setNewExam({ name: '', timeLimit: '', numberOfQuestions: '' }); // Reset form
+        setNewExam({ name: '', timeLimit: '', numberOfQuestions: '' });
     };
 
-    // Chỉnh sửa bài tập
     const handleEditExam = (exam) => {
-        setSelectedExam(exam);
+        setSelectedExam({ ...exam });
+        setIsEditingQuestion(false);
     };
 
-    // Lưu thay đổi bài tập
     const handleSaveExam = () => {
         setExams(exams.map(exam => (exam.id === selectedExam.id ? selectedExam : exam)));
-        setSelectedExam(null); // Reset after save
+        setSelectedExam(null);
+        setIsEditingQuestion(false);
     };
 
-    // Hủy chỉnh sửa bài tập
     const handleCancelEdit = () => {
-        setSelectedExam(null); // Reset edit mode
+        setSelectedExam(null);
+        setIsEditingQuestion(false);
     };
 
-    // Thêm câu hỏi
     const handleAddQuestion = () => {
         const newQuestion = {
             id: selectedExam.questions.length + 1,
@@ -45,29 +43,44 @@ const EditExamPage = () => {
             correctAnswer: ''
         };
         setSelectedExam({ ...selectedExam, questions: [...selectedExam.questions, newQuestion] });
+        setSelectedExam(prev => ({
+            ...prev,
+            numberOfQuestions: prev.questions.length + 1
+        }));
     };
 
-    // Xóa câu hỏi
     const handleDeleteQuestion = (questionId) => {
-        setSelectedExam({ ...selectedExam, questions: selectedExam.questions.filter(q => q.id !== questionId) });
-    };
-
-    // Sửa câu hỏi
-    const handleChangeQuestion = (questionId, field, value) => {
+        const updatedQuestions = selectedExam.questions.filter(q => q.id !== questionId);
         setSelectedExam({
             ...selectedExam,
-            questions: selectedExam.questions.map(q =>
-                q.id === questionId ? { ...q, [field]: value } : q
-            )
+            questions: updatedQuestions,
+            numberOfQuestions: updatedQuestions.length
         });
     };
 
-    // Mở/đóng chỉnh sửa câu hỏi
+    const handleChangeQuestion = (questionId, field, value) => {
+        const updatedQuestions = selectedExam.questions.map(q =>
+            q.id === questionId ? { ...q, [field]: value } : q
+        );
+        setSelectedExam({ ...selectedExam, questions: updatedQuestions });
+    };
+
+    const handleChangeOption = (questionId, index, value) => {
+        const updatedQuestions = selectedExam.questions.map(q => {
+            if (q.id === questionId) {
+                const newOptions = [...q.options];
+                newOptions[index] = value;
+                return { ...q, options: newOptions };
+            }
+            return q;
+        });
+        setSelectedExam({ ...selectedExam, questions: updatedQuestions });
+    };
+
     const handleToggleEditQuestions = () => {
         setIsEditingQuestion(!isEditingQuestion);
     };
 
-    // Xóa bài tập
     const handleDeleteExam = (examId) => {
         setExams(exams.filter(exam => exam.id !== examId));
     };
@@ -76,7 +89,6 @@ const EditExamPage = () => {
         <div className="container">
             <h1>Sửa Bài Tập</h1>
 
-            {/* Display Exam List */}
             <h2>Danh Sách Bài Tập</h2>
             <ul>
                 {exams.map(exam => (
@@ -85,13 +97,11 @@ const EditExamPage = () => {
                         <p>Số câu hỏi: {exam.numberOfQuestions}</p>
                         <p>Thời gian: {exam.timeLimit} phút</p>
                         <button onClick={() => handleEditExam(exam)}>Sửa</button>
-                        {/* Nút Xóa bài tập */}
                         <button onClick={() => handleDeleteExam(exam.id)}>Xóa Bài Tập</button>
                     </li>
                 ))}
             </ul>
 
-            {/* Add New Exam */}
             <h3>Thêm Bài Tập Mới</h3>
             <input
                 type="text"
@@ -113,7 +123,6 @@ const EditExamPage = () => {
             />
             <button onClick={handleAddExam}>Thêm Bài Tập</button>
 
-            {/* Edit Selected Exam */}
             {selectedExam && (
                 <div>
                     <h3>Sửa Bài Tập: {selectedExam.name}</h3>
@@ -133,7 +142,10 @@ const EditExamPage = () => {
                         onChange={(e) => setSelectedExam({ ...selectedExam, timeLimit: e.target.value })}
                     />
 
-                    {/* Chỉnh sửa câu hỏi */}
+                    <button onClick={handleToggleEditQuestions}>
+                        {isEditingQuestion ? 'Ẩn Chỉnh Sửa Câu Hỏi' : 'Chỉnh Sửa Câu Hỏi'}
+                    </button>
+
                     {isEditingQuestion && (
                         <div>
                             <h4>Các Câu Hỏi</h4>
@@ -153,13 +165,7 @@ const EditExamPage = () => {
                                                     key={idx}
                                                     type="text"
                                                     value={option}
-                                                    onChange={(e) =>
-                                                        handleChangeQuestion(question.id, 'options', [
-                                                            ...question.options.slice(0, idx),
-                                                            e.target.value,
-                                                            ...question.options.slice(idx + 1),
-                                                        ])
-                                                    }
+                                                    onChange={(e) => handleChangeOption(question.id, idx, e.target.value)}
                                                     placeholder={`Đáp án ${idx + 1}`}
                                                 />
                                             ))}
@@ -174,7 +180,7 @@ const EditExamPage = () => {
                                             <option value="C">Đáp án C</option>
                                             <option value="D">Đáp án D</option>
                                         </select>
-                                        <button onClick={() => handleDeleteQuestion(question.id)}>Xóa Câu Hỏi</button>
+                                        <button onClick={() => handleDeleteQuestion(question.id)} style={{ marginLeft: "10px" }}>Xóa Câu Hỏi</button>
                                     </li>
                                 ))}
                             </ul>
