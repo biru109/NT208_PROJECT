@@ -27,7 +27,6 @@ import BangXepHang from './pages/BangXepHang';
 
 
 
-
 function AppContent() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [doingExam, setDoingExam] = useState(null);

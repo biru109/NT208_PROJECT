@@ -130,6 +130,29 @@
   cursor: pointer;
 }
 
+
+.loading-spinner {
+  margin: 30px auto;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498DB;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
 @media (max-width: 768px) {
   .course-card {
     width: 100%; /* Khi nhỏ hơn tablet thì mỗi card chiếm full width */
